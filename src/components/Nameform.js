@@ -14,6 +14,10 @@ class NameForm extends Component{
         // event.preventDefault();
     }
 
+    componentDidMount(){
+        console.log('Inside NameForm');
+    }
+
     render(){
         return(
             <form onSubmit={this.handleSubmit}>

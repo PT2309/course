@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './display.css';
+import NameForm from './Nameform';
 
 // Controlled Components
 class AddCourse extends Component{
@@ -31,10 +32,23 @@ class AddCourse extends Component{
 
     }
 
+    componentDidMount(){
+        console.log('In the addcourse component');
+    }
+
+    componentDidUpdate(){
+        console.log('In the updating phase of AddCourse');
+    }
+
+    // componentWillUnmount(){
+    //     // Once user submits kill the timer
+    // }
 
     render(){
         // console.log(this.state);
         return(
+            <div>
+            <NameForm />
             <form onSubmit={this.handleSubmit} className='course-card'>
                 <label htmlFor='name'>Course Name</label><br />
                 <input 
@@ -62,6 +76,7 @@ class AddCourse extends Component{
                     value={this.state.description}></input> <br /> <br />
                 <input type='submit' value='Add Course'></input>
             </form>
+            </div>
         )
     }
 }

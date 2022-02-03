@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import Display from './components/Display';
 import AddCourse from './components/AddCourse';
-import NameForm from './components/Nameform';
+// import NameForm from './components/Nameform';
 
 class App extends Component {
 
@@ -11,11 +11,12 @@ class App extends Component {
       {id:1, name: 'React', duration: 15, description: 'Small description'}, 
       {id:2, name: 'Java', duration: 14, description: 'Small description'}, 
       {id:3, name: 'Data Structures', duration: 10, description: 'Small description'}
-    ]
+    ],
+    message: 'Hello'
   }
 
   deleteCourse = (id) => {
-    console.log('Update the state in this component', id);
+    // console.log('Update the state in this component', id);
     let itemList = this.state.courseDetails.filter(item => {
     // 1 !== 1  
     // 2 !== 1
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   addCourse = (course_detail) => {
-      console.log(course_detail);
+      // console.log(course_detail);
       course_detail.id = (4 + Math.ceil(Math.random()*100));
 
        let courseDetails = [...this.state.courseDetails, course_detail]
@@ -41,6 +42,28 @@ class App extends Component {
       })
   }
 
+  componentDidMount(){
+    console.log('Mounting phase in app.js');
+
+    // this.setState({
+    //   courseDetails: [{id:1, name: 'React', duration: 15, description: 'Small description'}, 
+    //                   {id:2, name: 'Java', duration: 14, description: 'Small description'}, 
+    //                   {id:3, name: 'Data Structures', duration: 10, description: 'Small description'}]
+    // })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+    console.log('Component in updating phase');
+    console.log('Previous Props:', prevProps)
+    console.log('Previous State:', prevState)
+    if(prevState.message !== 'Ok'){
+      this.setState({
+        message: 'Ok'
+     })
+    }    
+  }
+
+  // Pure Functions
   render(){
     return (
       <div className="App">
@@ -48,7 +71,7 @@ class App extends Component {
           courseDetails={this.state.courseDetails}
           deleteCourse = {this.deleteCourse}
         ></Display><br/>
-        <NameForm />
+        {/* <NameForm /> */}
         <AddCourse addCourse={this.addCourse}></AddCourse>
       </div>
     );
